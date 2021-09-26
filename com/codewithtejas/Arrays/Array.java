@@ -65,6 +65,19 @@ public class Array {
 
         return max;
     }
+    
+    // common with another array - intersect
+    public List<Integer> intersect(int[] arr) {
+        List<Integer> commonItems = new ArrayList<>();
+
+        for (var itemInArray : array) {
+            for (var itemInArray2 : arr) {
+                if (itemInArray == itemInArray2 && !commonItems.contains(itemInArray))
+                    commonItems.add(itemInArray);
+            }
+        }
+        return commonItems;
+    }
 
     // main
     public static void main(String[] args) {
@@ -73,8 +86,11 @@ public class Array {
         numbers.insert(54);// 1
         numbers.insert(12);// 2
         numbers.insert(33);// 3
-        // numbers.removeAt(0);
-        System.out.println(numbers.indexOf(33));
-        numbers.print();
+//         // numbers.removeAt(0);
+//         System.out.println(numbers.indexOf(33));
+//         numbers.print();
+        
+        int[] array2 = {2, 54, 12, 12, 23, 233, 45};
+        System.out.println(numbers.intersect(array2));
     }
 }
