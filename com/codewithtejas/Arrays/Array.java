@@ -55,6 +55,16 @@ public class Array {
         }
         System.out.println(Arrays.toString(printArray));
     }
+    
+    // max in array
+    public int max() {
+        int max = array[0];
+        for (var item : array)
+            if(item > max)
+                max = item;
+
+        return max;
+    }
 
     // main
     public static void main(String[] args) {
