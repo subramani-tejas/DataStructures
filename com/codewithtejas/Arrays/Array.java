@@ -9,6 +9,7 @@ public class Array {
     private int[] array;
     private int index;
 
+    // initialize the array
     public Array(int length) {
         array = new int[length];
     }
@@ -19,9 +20,9 @@ public class Array {
         if (index == array.length) {
             int[] newArray = new int[index * 2];
 
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index; i++)
                 newArray[i] = array[i];
-            }
+
             array = newArray;
         }
         array[index++] = num;
@@ -57,17 +58,17 @@ public class Array {
         }
         System.out.println(Arrays.toString(printArray));
     }
-    
+
     // max in array
     public int max() {
         int max = array[0];
         for (var item : array)
-            if(item > max)
+            if (item > max)
                 max = item;
 
         return max;
     }
-    
+
     // common with another array - intersect
     public List<Integer> intersect(int[] arr) {
         List<Integer> commonItems = new ArrayList<>();
@@ -91,7 +92,7 @@ public class Array {
 //         // numbers.removeAt(0);
 //         System.out.println(numbers.indexOf(33));
 //         numbers.print();
-        
+
         int[] array2 = {2, 54, 12, 12, 23, 233, 45};
         System.out.println(numbers.intersect(array2));
     }
