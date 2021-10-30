@@ -3,6 +3,7 @@ package com.codewithtejas.LinkedLists;
 import com.codewithtejas.Arrays.Array;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class LinkedList {
@@ -136,31 +137,98 @@ public class LinkedList {
         return array;
     }
 
-    // reverse the linked list (in progress)
+    // reverse the linked list
     public void reverse() {
-        last.next = first;
+        if (isEmpty()) return;
 
-        var temp = last;
+        Node previous = null;
+        var current = first;
+        var next = current.next;
+        while (current != null) {
+            current.next = previous;
+            previous = current;
+            current = next;
+
+            if (current != null)
+                next = current.next;
+        }
+
         last = first;
-        first = temp;
-        last.next = null;
+        first = previous;
+    }
 
+    // get Kth node from the end (in progress)
+    public Node getKthFromEnd(int k) {
+        var x = first;
+        var y = first;
+        int difference = 0;
+
+        while (y != null) {
+
+            if (difference != (k - 1)) {
+                y = y.next;
+                difference++;
+            }
+
+            x = x.next;
+            y = y.next;
+        }
+        return x;
+    }
+
+    // get middle node(s)
+    public List<Integer> getMiddle() {
+
+        var x = first;
+        var y = first;
+        while (y != last && y.next != last) {
+            x = x.next;
+            y = y.next.next;
+        }
+
+        if (y == last) return List.of(x.value);
+        else return List.of(x.value, x.next.value);
+        /*
+         *  1   2   3   4   5   6   7   8   9
+         *  X   X   X   X   X   X   X   X   X
+         *                  x               y
+         *
+         * even #Nodes
+         * y.next.next == null
+         * return x & x.next   --> 4,5
+         *
+         *  1   3   5   7   9 --> #nodes +2
+         *  1   2   3   4   5 --> middle 1
+         * */
+
+    }
+
+    // has a loop?
+    public boolean hasLoop() {
+        var slow = first;
+        var fast = first;
+
+        while (fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+                return true;
+        }
+        return false;
     }
 
     // main
     public static void main(String[] args) {
         var list = new LinkedList();
-        list.addFirst(5);
-        list.addFirst(52);
-        list.addLast(32);
-        list.addLast(19);
-//        list.deleteFirst();
-//        list.deleteLast();
-//        System.out.println(list.indexOf(19));
-//        System.out.println(list.contains(193));
-        list.reverse();
-        System.out.println(Arrays.toString(list.toArray()));
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.addLast(5);
+        list.addLast(6);
+        list.addLast(7);
+        list.last = list.first;
+
+        System.out.println(list.hasLoop());
     }
-
-
 }
