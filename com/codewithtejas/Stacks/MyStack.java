@@ -52,6 +52,18 @@ public class MyStack {
         return reversed.toString();
     }
 
+    // if a string is a palindrome
+    public boolean isPalindrome(String str){
+        Stack<Character> stack = new Stack<>();
+        for(int i=0; i<str.length(); i++)
+            stack.push(str.charAt(i));
+
+        for(int i=0; i<str.length(); i++)
+            if (stack.pop() == str.charAt(i)) return true;
+
+        return false;
+    }
+
     public static void main(String[] args) {
         MyStack ex = new MyStack();
         ex.push(10);
@@ -59,7 +71,10 @@ public class MyStack {
         ex.push(30);
         ex.push(40);
         ex.push(50);
-        ex.printStack();
-        System.out.println(ex.peek());
+        // ex.printStack();
+        // System.out.println(ex.peek());
+
+        String str = "abb";
+        System.out.println(ex.isPalindrome(str));
     }
 }

@@ -118,8 +118,24 @@ public class HashMaps {
         return null;
     }
 
+    // first non repeating character
+    public int firstNonRepeatingCharacter(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            char character = str.charAt(i);
+            map.put(character, map.getOrDefault(character, 0) + 1);
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            char character = str.charAt(i);
+            if (map.get(character) == 1) return i;
+        }
+
+        return -1;
+    }
+
     public static void main(String[] args) {
-        String str = "a green apple";
+        String str = "aabac";
         HashMaps map = new HashMaps();
         /*System.out.println(map.mostRepeatedCharacter(str));
         System.out.println(map.firstRepeatedCharacter(str));*/
@@ -127,5 +143,7 @@ public class HashMaps {
         int[] arr = {8, 1, 2, 7, 11, 15};
         /*System.out.println(map.countPairsWithDiff(arr, 2));
         System.out.println(Arrays.toString(map.twoSum(arr, 9)));*/
+
+        System.out.println(map.firstNonRepeatingCharacter(str));
     }
 }
