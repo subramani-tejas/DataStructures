@@ -1,1 +1,10 @@
-/out/production/
+.idea
+
+# Default ignored files
+/shelf/
+/workspace.xml
+
+/out
+
+*.iml
+*.class
